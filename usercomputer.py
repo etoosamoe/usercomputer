@@ -1,8 +1,17 @@
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+
+
 file1 = r'\\serv\log\User-computer.txt' #путь к файлу, по умолчанию только для чтения r = сырая строка
 a = 1                                   # тупое решение, чтобы скрипт не закрывался
 while a == 1:
-    print('\n' + '-' * 30)
+    print(bcolors.HEADER + '\n' + '-' * 30 + bcolors.ENDC)
     word = input("Введите имя компа, учетку пользователя...: ")
+    print()
     chik = open(file1)
     for line in chik:
         if word.lower() in line.lower():# опускание текста строки в нижний регистр, чтобы быть независимыми
@@ -14,4 +23,4 @@ while a == 1:
             date = splittedline[1]
             time = splittedline[2]
 
-            print ("{:>18} {:>18} {:>18} {:>18} ".format(name, hostname, date, time)) # разделяет по 18 символов
+            print (bcolors.OKGREEN + "{:>18}".format(name) + bcolors.OKBLUE + " {:>18}".format(hostname) + bcolors.FAIL + " {:>18}".format(date) + bcolors.FAIL + " {:>18}".format(time)) # разделяет по 18 символов
